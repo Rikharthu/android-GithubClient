@@ -62,6 +62,7 @@ public class ApplicationModule {
         return mApplication.getSharedPreferences("demo-prefs", Context.MODE_PRIVATE);
     }
 
+    @Singleton
     @Provides
     GithubDatabase provideGithubDatabase(@ApplicationContext Context appContext) {
         return Room.databaseBuilder(appContext, GithubDatabase.class, "github-database").build();

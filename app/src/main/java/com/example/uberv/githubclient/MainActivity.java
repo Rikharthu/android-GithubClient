@@ -3,6 +3,7 @@ package com.example.uberv.githubclient;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.uberv.githubclient.data.DataManager;
 import com.example.uberv.githubclient.data.api.GithubApiService;
 import com.example.uberv.githubclient.data.api.response.RepositoryResponse;
 import com.example.uberv.githubclient.data.database.GithubDatabase;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     GithubDatabase mGithubDatabase;
     @Inject
     GithubApiService mGithubApiService;
+    @Inject
+    DataManager mDataManager;
 
     private FirebaseAnalytics mFirebaseAnalytics;
 

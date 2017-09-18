@@ -16,6 +16,7 @@ public class DataManager {
     private GithubDatabase mGithubDatabase;
     private SharedPrefsHelper mSharedPrefsHelper;
 
+    // TODO add comments from AdapterRepos from othersample
     @Inject
     public DataManager(@ApplicationContext Context context, GithubDatabase githubDatabase, SharedPrefsHelper sharedPrefsHelper) {
         mContext = context;
