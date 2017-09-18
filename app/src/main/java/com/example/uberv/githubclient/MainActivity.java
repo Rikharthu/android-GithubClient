@@ -7,7 +7,9 @@ import com.example.uberv.githubclient.data.api.GithubApiService;
 import com.example.uberv.githubclient.data.api.response.RepositoryResponse;
 import com.example.uberv.githubclient.data.database.GithubDatabase;
 import com.example.uberv.githubclient.data.model.User;
+import com.example.uberv.githubclient.utils.AnalyticsUtils;
 import com.example.uberv.githubclient.utils.Utils;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.List;
 
@@ -22,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     GithubDatabase mGithubDatabase;
     @Inject
     GithubApiService mGithubApiService;
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,9 @@ public class MainActivity extends AppCompatActivity {
 
                     fetchRepositoryForUser(user);
                 }, Timber::e);
+
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+        AnalyticsUtils.logOnCreatedEvent(mFirebaseAnalytics);
 
         Timber.d("onCreate()");
     }

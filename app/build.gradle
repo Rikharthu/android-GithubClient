@@ -46,4 +46,9 @@ dependencies {
     annotationProcessor "android.arch.persistence.room:compiler:1.0.0-alpha9-1"
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
+    implementation 'com.google.firebase:firebase-core:11.2.2'
 }
+
+
+apply plugin: 'com.google.gms.google-services'
