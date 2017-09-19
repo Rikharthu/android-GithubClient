@@ -2,10 +2,12 @@ package com.example.uberv.githubclient.data.preferences;
 
 import android.content.SharedPreferences;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import com.example.uberv.githubclient.di.annotations.GithubApplicationScope;
 
-@Singleton
+import javax.inject.Inject;
+
+
+@GithubApplicationScope
 public class SharedPrefsHelper {
 
     public static String PREF_KEY_ACCESS_TOKEN = "access-token";

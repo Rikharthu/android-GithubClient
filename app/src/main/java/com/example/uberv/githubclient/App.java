@@ -4,8 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.example.uberv.githubclient.data.DataManager;
-import com.example.uberv.githubclient.di.components.ApplicationComponent;
-import com.example.uberv.githubclient.di.components.DaggerApplicationComponent;
+import com.example.uberv.githubclient.di.components.DaggerGithubApplicationComponent;
+import com.example.uberv.githubclient.di.components.GithubApplicationComponent;
 import com.example.uberv.githubclient.di.modules.ApplicationModule;
 
 import javax.inject.Inject;
@@ -16,19 +16,20 @@ public class App extends Application {
 
     @Inject
     DataManager mDataManager;
-    ApplicationComponent mApplicationComponent;
+    GithubApplicationComponent mGithubApplicationComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
 
         Timber.plant(new DevelopmentTree());
-
-        mApplicationComponent = DaggerApplicationComponent.builder()
+        mGithubApplicationComponent = DaggerGithubApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
+//                .githubServiceModule(new GithubServiceModule())
+//                .netModule(new NetModule())
                 .build();
 
-        mApplicationComponent.inject(this);
+        mGithubApplicationComponent.inject(this);
 
         Timber.d("Initialized");
     }
@@ -37,7 +38,7 @@ public class App extends Application {
         return (App) context.getApplicationContext();
     }
 
-    public ApplicationComponent getApplicationComponent() {
-        return mApplicationComponent;
+    public GithubApplicationComponent getGithubAppComponent() {
+        return mGithubApplicationComponent;
     }
 }

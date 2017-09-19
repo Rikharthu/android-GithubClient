@@ -8,6 +8,9 @@ import com.example.uberv.githubclient.data.api.GithubApiService;
 import com.example.uberv.githubclient.data.api.response.RepositoryResponse;
 import com.example.uberv.githubclient.data.database.GithubDatabase;
 import com.example.uberv.githubclient.data.model.User;
+import com.example.uberv.githubclient.di.components.DaggerGithubApplicationComponent;
+import com.example.uberv.githubclient.di.components.GithubApplicationComponent;
+import com.example.uberv.githubclient.di.modules.ApplicationModule;
 import com.example.uberv.githubclient.utils.AnalyticsUtils;
 import com.example.uberv.githubclient.utils.Utils;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -35,7 +38,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        App.get(this).getApplicationComponent().inject(this);
+        App.get(this).getGithubAppComponent().inject(this);
+
+        //FIXME for debug
+        GithubApiService apiService1 = App.get(this).getGithubAppComponent().getGithubApiService();
+        GithubApiService apiService2 = App.get(this).getGithubAppComponent().getGithubApiService();
+        GithubApiService apiService3 = App.get(this).getGithubAppComponent().getGithubApiService();
+
+        GithubApplicationComponent newAppComponent = DaggerGithubApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(App.get(this)))
+                .build();
+
+        GithubApiService apiService4 = newAppComponent.getGithubApiService();
+        GithubApiService apiService5 = newAppComponent.getGithubApiService();
+        GithubApiService apiService6 = newAppComponent.getGithubApiService();
+        //FIXME====
 
         mGithubApiService.getUser("Rikharthu")
                 .subscribeOn(Schedulers.io())

@@ -5,11 +5,12 @@ import android.content.Context;
 import com.example.uberv.githubclient.data.database.GithubDatabase;
 import com.example.uberv.githubclient.data.preferences.SharedPrefsHelper;
 import com.example.uberv.githubclient.di.annotations.ApplicationContext;
+import com.example.uberv.githubclient.di.annotations.GithubApplicationScope;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-@Singleton
+@GithubApplicationScope
 public class DataManager {
 
     private Context mContext;
